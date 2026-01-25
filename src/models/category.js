@@ -13,7 +13,7 @@ const opts = {
 
 const schema = new mongoose.Schema(
   {
-    name: String,
+    name: { type: String, required: true },
   },
   opts,
 );
