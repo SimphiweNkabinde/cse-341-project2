@@ -6,7 +6,7 @@ async function getAll(req, res) {
     return res.status(200).json(result);
   } catch (error) {
     console.log(error);
-    return res.status(500);
+    return res.sendStatus(500);
   }
 }
 
@@ -16,7 +16,7 @@ async function getOne(req, res) {
     return res.status(200).json(result);
   } catch (error) {
     console.log(error);
-    return res.status(500);
+    return res.sendStatus(500);
   }
 }
 
@@ -27,7 +27,7 @@ async function create(req, res) {
     return res.status(201).json(result);
   } catch (error) {
     console.log(error);
-    return res.status(500);
+    return res.sendStatus(500);
   }
 }
 
@@ -38,7 +38,7 @@ async function update(req, res) {
     return res.status(200).json(result);
   } catch (error) {
     console.log(error);
-    return res.status(500);
+    return res.sendStatus(500);
   }
 }
 
@@ -48,7 +48,7 @@ async function remove(req, res) {
     return res.status(200).json(result);
   } catch (error) {
     console.log(error);
-    return res.status(500);
+    return res.sendStatus(500);
   }
 }
 
