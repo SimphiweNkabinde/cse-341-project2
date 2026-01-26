@@ -15,6 +15,9 @@ async function getOne(req, res) {
     const result = await Transaction.findById(req.params.id).populate(
       "category",
     );
+    if (!result) {
+      return res.status(404).json("Record Not Found");
+    }
     return res.status(200).json(result);
   } catch (error) {
     console.log(error);
@@ -46,7 +49,14 @@ async function update(req, res) {
       { _id: req.params.id },
       { type, description, amount, date, category },
     );
-    return res.status(200).json(result);
+
+    if (!result.acknowledged) {
+      return res
+        .status(500)
+        .json({ error: "An error occurred while updating the record" });
+    }
+
+    return res.sendStatus(204);
   } catch (error) {
     console.log(error);
     return res.sendStatus(500);
@@ -56,7 +66,14 @@ async function update(req, res) {
 async function remove(req, res) {
   try {
     const result = await Transaction.deleteOne({ _id: req.params.id });
-    return res.status(200).json(result);
+
+    if (!result.acknowledged) {
+      return res
+        .status(500)
+        .json({ error: "An error occurred while updating the record" });
+    }
+
+    return res.sendStatus(204);
   } catch (error) {
     console.log(error);
     return res.sendStatus(500);

@@ -21,7 +21,13 @@ const validationRules = [
     .isString()
     .withMessage("category must be an id string")
     .notEmpty()
-    .withMessage("category is required"),
+    .withMessage("category is required")
+    .custom((value) => {
+      if (!isValidObjectId(value)) {
+        throw new Error("Invalid id");
+      }
+      return true;
+    }),
 ];
 
 module.exports = {
