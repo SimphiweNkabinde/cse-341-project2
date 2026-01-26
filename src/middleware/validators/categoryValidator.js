@@ -1,6 +1,6 @@
 const { body } = require("express-validator");
 const validate = require("./validate");
-const validateIdParam = require("./ValidateIdParam");
+const validateIdParam = require("./validateIdParam");
 
 const validationRules = [
   body("name")
