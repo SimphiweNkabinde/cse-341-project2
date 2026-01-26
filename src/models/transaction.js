@@ -1,15 +1,5 @@
 const mongoose = require("mongoose");
-
-const opts = {
-  toJSON: {
-    virtuals: true,
-    transform: (doc, ret) => {
-      delete ret._id;
-      delete ret.__v;
-      return ret;
-    },
-  },
-};
+const idOptions = require("../utils/schemaIdOptions");
 
 const schema = new mongoose.Schema(
   {
@@ -23,7 +13,7 @@ const schema = new mongoose.Schema(
       required: true,
     },
   },
-  opts,
+  { ...idOptions, timestamps: true },
 );
 schema.virtual("id").get(function () {
   return this._id;
