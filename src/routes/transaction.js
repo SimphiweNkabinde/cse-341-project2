@@ -1,14 +1,11 @@
 const router = require("express").Router();
-const {
-  validateCreate,
-  validateUpdate,
-} = require("../middleware/validators/transactionValidator");
+const validator = require("../middleware/validators/transactionValidator");
 const controller = require("./../controllers/transaction");
 
 router.get("/", controller.getAll);
-router.get("/:id", controller.getOne);
-router.post("/", validateCreate, controller.create);
-router.put("/:id", validateUpdate, controller.update);
-router.delete("/:id", controller.remove);
+router.get("/:id", validator.validateGetOne, controller.getOne);
+router.post("/", validator.validateCreate, controller.create);
+router.put("/:id", validator.validateUpdate, controller.update);
+router.delete("/:id", validator.validateDeleteOne, controller.remove);
 
 module.exports = router;
