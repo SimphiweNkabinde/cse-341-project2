@@ -1,27 +1,26 @@
 const { body } = require("express-validator");
 const validate = require("./validate");
 const validateIdParam = require("./validateIdParam");
+const { isValidObjectId } = require("mongoose");
 
 const validationRules = [
-  body("type")
-    .isString()
-    .withMessage("type must be a String")
-    .notEmpty()
-    .withMessage("type cannot be empty")
-    .isIn(["expense", "income"])
-    .withMessage('type must be "expense" or "income"'),
   body("description")
     .isString()
     .withMessage("description must be a String")
     .notEmpty()
     .withMessage("description cannot be empty"),
+  body("notes").isString().withMessage("notes must be a String"),
   body("amount").isNumeric().withMessage("amount must be a Number"),
-  body("date").isDate().withMessage("date must be a date"),
-  body("category")
-    .isString()
-    .withMessage("category must be an id string")
+  body("date")
     .notEmpty()
-    .withMessage("category is required")
+    .withMessage("date is required")
+    .isDate()
+    .withMessage("date must be a valid date"),
+  body("budgetItem")
+    .isString()
+    .withMessage("budgetItem must be an id string")
+    .notEmpty()
+    .withMessage("budgetItem is required")
     .custom((value) => {
       if (!isValidObjectId(value)) {
         throw new Error("Invalid id");

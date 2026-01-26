@@ -2,7 +2,7 @@ const Transaction = require("../models/transaction");
 
 async function getAll(req, res) {
   try {
-    const result = await Transaction.find().populate("category");
+    const result = await Transaction.find().populate("budgetItem");
     return res.status(200).json(result);
   } catch (error) {
     console.log(error);
@@ -13,7 +13,7 @@ async function getAll(req, res) {
 async function getOne(req, res) {
   try {
     const result = await Transaction.findById(req.params.id).populate(
-      "category",
+      "budgetItem",
     );
     if (!result) {
       return res.status(404).json("Record Not Found");
@@ -26,14 +26,14 @@ async function getOne(req, res) {
 }
 
 async function create(req, res) {
-  const { type, description, amount, date, category } = req.body;
+  const { description, notes, amount, date, budgetItem } = req.body;
   try {
     const result = await Transaction.create({
-      type,
       description,
+      notes,
       amount,
       date,
-      category,
+      budgetItem,
     });
     return res.status(201).json(result);
   } catch (error) {
@@ -43,11 +43,11 @@ async function create(req, res) {
 }
 
 async function update(req, res) {
-  const { type, description, amount, date, category } = req.body;
+  const { description, notes, amount, date, budgetItem } = req.body;
   try {
     const result = await Transaction.updateOne(
       { _id: req.params.id },
-      { type, description, amount, date, category },
+      { description, notes, amount, date, budgetItem },
     );
 
     if (!result.acknowledged) {

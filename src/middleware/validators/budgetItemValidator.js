@@ -1,7 +1,6 @@
 const { body } = require("express-validator");
 const validate = require("./validate");
 const validateIdParam = require("./validateIdParam");
-const { isValidObjectId } = require("mongoose");
 
 const validationRules = [
   body("type")
@@ -11,23 +10,12 @@ const validationRules = [
     .withMessage("type cannot be empty")
     .isIn(["expense", "income"])
     .withMessage('type must be "expense" or "income"'),
-  body("description")
+  body("name")
     .isString()
-    .withMessage("description must be a String")
+    .withMessage("name must be a String")
     .notEmpty()
-    .withMessage("description cannot be empty"),
+    .withMessage("name cannot be empty"),
   body("amount").isNumeric().withMessage("amount must be a Number"),
-  body("category")
-    .isString()
-    .withMessage("category must be an id string")
-    .notEmpty()
-    .withMessage("category is required")
-    .custom((value) => {
-      if (!isValidObjectId(value)) {
-        throw new Error("Invalid id");
-      }
-      return true;
-    }),
 ];
 
 module.exports = {

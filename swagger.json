@@ -31,13 +31,10 @@
                 "type": {
                   "example": "any"
                 },
-                "description": {
+                "name": {
                   "example": "any"
                 },
                 "amount": {
-                  "example": "any"
-                },
-                "category": {
                   "example": "any"
                 }
               }
@@ -95,13 +92,10 @@
                 "type": {
                   "example": "any"
                 },
-                "description": {
+                "name": {
                   "example": "any"
                 },
                 "amount": {
-                  "example": "any"
-                },
-                "category": {
                   "example": "any"
                 }
               }
@@ -158,10 +152,10 @@
             "schema": {
               "type": "object",
               "properties": {
-                "type": {
+                "description": {
                   "example": "any"
                 },
-                "description": {
+                "notes": {
                   "example": "any"
                 },
                 "amount": {
@@ -170,7 +164,7 @@
                 "date": {
                   "example": "any"
                 },
-                "category": {
+                "budgetItem": {
                   "example": "any"
                 }
               }
@@ -225,10 +219,10 @@
             "schema": {
               "type": "object",
               "properties": {
-                "type": {
+                "description": {
                   "example": "any"
                 },
-                "description": {
+                "notes": {
                   "example": "any"
                 },
                 "amount": {
@@ -237,119 +231,7 @@
                 "date": {
                   "example": "any"
                 },
-                "category": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/categories/": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                }
-              }
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
-    "/categories/{id}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
+                "budgetItem": {
                   "example": "any"
                 }
               }

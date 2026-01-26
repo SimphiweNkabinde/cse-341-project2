@@ -2,7 +2,7 @@ const BudgetItem = require("../models/budgetItem");
 
 async function getAll(req, res) {
   try {
-    const result = await BudgetItem.find().populate("category");
+    const result = await BudgetItem.find();
     return res.status(200).json(result);
   } catch (error) {
     console.log(error);
@@ -12,9 +12,7 @@ async function getAll(req, res) {
 
 async function getOne(req, res) {
   try {
-    const result = await BudgetItem.findById(req.params.id).populate(
-      "category",
-    );
+    const result = await BudgetItem.findById(req.params.id);
     if (!result) {
       return res.status(404).json("Record Not Found");
     }
@@ -26,13 +24,12 @@ async function getOne(req, res) {
 }
 
 async function create(req, res) {
-  const { type, description, amount, category } = req.body;
+  const { type, name, amount } = req.body;
   try {
     const result = await BudgetItem.create({
       type,
-      description,
+      name,
       amount,
-      category,
     });
     return res.status(201).json(result);
   } catch (error) {
@@ -42,11 +39,11 @@ async function create(req, res) {
 }
 
 async function update(req, res) {
-  const { type, description, amount, category } = req.body;
+  const { type, name, amount } = req.body;
   try {
     const result = await BudgetItem.updateOne(
       { _id: req.params.id },
-      { type, description, amount, category },
+      { type, name, amount },
     );
 
     if (!result.acknowledged) {

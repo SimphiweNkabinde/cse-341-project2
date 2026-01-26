@@ -3,13 +3,13 @@ const idOptions = require("../utils/schemaIdOptions");
 
 const schema = new mongoose.Schema(
   {
-    type: { type: String, enum: ["expense", "income"], required: true },
     description: { type: String, required: true },
+    notes: { type: String, required: false },
     amount: { type: Number, required: true },
     date: { type: Date, required: true },
-    category: {
+    budgetItem: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Category",
+      ref: "BudgetItem",
       required: true,
     },
   },
