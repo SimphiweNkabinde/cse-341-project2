@@ -5,11 +5,7 @@
     "description": "API for managing a budget and financial transactions",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
   "basePath": "/",
-  "schemes": [
-    "http"
-  ],
   "paths": {
     "/budget-items/": {
       "get": {
